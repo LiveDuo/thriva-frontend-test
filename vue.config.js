@@ -2,6 +2,7 @@ const path = require('path')
 const projectRoot = path.resolve(__dirname)
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/thriva-frontend-test/' : '/',
   lintOnSave: true,
   configureWebpack: {
     resolve: {
