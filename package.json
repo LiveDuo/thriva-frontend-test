@@ -2,7 +2,7 @@
   "name": "thriva-front-end-challenge",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/LiveDuo/thriva-frontend-test",
+  "homepage": "https://liveduo.github.io/thriva-frontend-test",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
