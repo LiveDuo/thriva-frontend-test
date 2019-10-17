@@ -47,7 +47,6 @@
     color: #3d4250
     font-size: 20px
     font-weight: normal
-    font-weight: normal;
     display: flex
     justify-content: center
     align-items: center

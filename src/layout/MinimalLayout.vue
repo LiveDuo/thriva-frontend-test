@@ -42,9 +42,9 @@
         padding-top: 82px
 
       .fade-enter-active
-        transition-duration: 1.0s;
-        transition-property: opacity;
-        transition-timing-function: ease;
+        transition-duration: 1.0s
+        transition-property: opacity
+        transition-timing-function: ease
 
       .fade-leave-active
         transition-duration: 0.0s
