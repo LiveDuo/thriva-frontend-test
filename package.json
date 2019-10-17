@@ -2,6 +2,7 @@
   "name": "thriva-front-end-challenge",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://github.com/LiveDuo/thriva-frontend-test",
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,10 +12,14 @@
     "e2e": "vue-cli-service test:e2e --headless",
     "unit": "vue-cli-service test:unit",
     "unit-watch": "vue-cli-service test:unit --watch",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "browserslist": "^4.7.0",
+    "caniuse-lite": "^1.0.30000999",
     "connect-history-api-fallback": "^1.5.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-html": "^4.0.6",
@@ -46,6 +51,7 @@
     "chance": "^1.0.16",
     "dotenv": "^6.0.0",
     "flush-promises": "^1.0.0",
+    "gh-pages": "^2.1.1",
     "sinon": "^4.5.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
