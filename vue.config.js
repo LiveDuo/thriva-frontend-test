@@ -12,5 +12,9 @@ module.exports = {
         'assets': `${projectRoot}/src/assets`
       }
     }
+  },
+  chainWebpack: config =>  {
+    // optimize-css cause build to fail
+    config.plugins.delete('optimize-css')
   }
 }
