@@ -10,7 +10,7 @@ Vue.use(Router)
 Vue.use(Meta)
 
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   base: '/',
   routes: [
     {
