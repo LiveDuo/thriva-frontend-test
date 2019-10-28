@@ -7,25 +7,16 @@ export default {
   },
   addRemoveGoal (state, value) {
     if (state.goals.includes(value)) {
-      let index = state.goals.indexOf(value)
+      const index = state.goals.indexOf(value)
       state.goals.splice(index, 1)
     } else {
       state.goals.push(value)
     }
   },
-  addRemoveDiet (state, value) {
-    if (state.diets.includes(value)) {
-      let index = state.diets.indexOf(value)
-      state.diets.splice(index, 1)
-    } else {
-      state.diets.push(value)
-    }
+  updateDiet (state, value) {
+    state.diet = value
   },
-  addRemoveGender (state, value) {
-    if (state.gender === value) {
-      state.gender = null
-    } else {
-      state.gender = value
-    }
+  updateGender (state, value) {
+    state.gender = value
   }
 }

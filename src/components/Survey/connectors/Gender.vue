@@ -2,7 +2,7 @@
   import CheckButton from '@/components/Survey/components/CheckButton'
   import ThvButton from '@/components/Shared/Button'
 
-  import { mapGetters } from 'vuex'
+  import { mapState, mapMutations } from 'vuex'
 
   export default {
     name: 'Gender',
@@ -26,21 +26,17 @@
     },
     methods: {
       submit () {
-        let dataForTheAPI = { name: this.getName, goals: this.getGoals, diets: this.getDiets, dob: this.getDob }
+        let dataForTheAPI = { name: this.name, goals: this.goals, diets: this.diets, dob: this.dob }
         alert(`Survey complete! Data for the API: ${JSON.stringify(dataForTheAPI)}`)
       },
       back () {
         this.$router.push('/dob')
       },
-      onClick (value) {
-        this.$store.commit('survey/addRemoveGender', value)
-      }
+      ...mapMutations('survey', ['updateGender'])
     },
     computed: {
-      genderSelected () {
-        return this.$store.getters['survey/getGender']
-      },
-      ...mapGetters('survey', ['getName', 'getGoals', 'getDiets', 'getDob'])
+      ...mapState('survey', { genderSelected: 'gender' }),
+      ...mapState('survey', ['name', 'gender', 'goals', 'diets', 'dob'])
     }
   }
 </script>
@@ -59,9 +55,8 @@
           :key='key',
           :text='gender.name'
           :selected="genderSelected === gender.value"
-          :disabled="genderSelected !== gender.value && genderSelected !== null"
           :value="gender.value"
-          @clicked="onClick"
+          @clicked="updateGender"
         )
 
         .grid-x.button-container
@@ -72,7 +67,7 @@
             thv-button(
               element='button',
               size='large'
-              :disabled='!genderSelected'
+              :disabled='!gender'
               @click='submit'
             ) Next
 

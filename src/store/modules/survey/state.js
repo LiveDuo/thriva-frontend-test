@@ -1,7 +1,7 @@
 const state = () => ({
   name: null,
   goals: [],
-  diets: [],
+  diet: null,
   dob: null,
   gender: null
 })

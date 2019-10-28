@@ -2,6 +2,8 @@
   import CheckButton from '@/components/Survey/components/CheckButton'
   import ThvButton from '@/components/Shared/Button'
 
+  import { mapState, mapMutations } from 'vuex'
+
   export default {
     name: 'Goals',
     components: {
@@ -47,17 +49,14 @@
       },
       onClick (value) {
         this.$store.commit('survey/addRemoveGoal', value)
-      }
+      },
+      ...mapMutations('survey', ['addRemoveGoal'])
     },
     computed: {
-      name () {
-        return this.$store.getters['survey/getName']
-      },
-      goalsAdded () {
-        return this.$store.getters['survey/getGoals']
-      },
+      ...mapState('survey', { goalsAdded: 'goals' }),
+      ...mapState('survey', ['name']),
       goalsFull () {
-        return this.goalsAdded.length > 4
+        return this.goalsAdded.length >= 4
       }
     }
   }

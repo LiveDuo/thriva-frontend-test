@@ -2,6 +2,8 @@
   import TextInput from '@/components/Shared/TextInput'
   import ThvButton from '@/components/Shared/Button'
 
+  import { mapState, mapMutations } from 'vuex'
+
   export default {
     name: 'Name',
     components: {
@@ -9,16 +11,10 @@
       ThvButton
     },
     computed: {
-      name: {
-        get () {
-          return this.$store.getters['survey/getName']
-        },
-        set (value) {
-          this.$store.commit('survey/updateName', value)
-        }
-      }
+      ...mapState('survey', ['name'])
     },
     methods: {
+      ...mapMutations('survey', ['updateName']),
       submit () {
         this.$router.push('/goals')
       }
@@ -36,7 +32,8 @@
         text-input.survey-input(
           type='text',
           name='name',
-          v-model='name'
+          :value="name"
+          @input="updateName"
           @keyup.enter='submit'
         )
 

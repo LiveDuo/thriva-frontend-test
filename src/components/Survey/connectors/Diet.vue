@@ -2,6 +2,8 @@
   import CheckButton from '@/components/Survey/components/CheckButton'
   import ThvButton from '@/components/Shared/Button'
 
+  import { mapState, mapMutations } from 'vuex'
+
   export default {
     name: 'Diet',
     components: {
@@ -49,20 +51,11 @@
       back () {
         this.$router.push('/goals')
       },
-      onClick (value) {
-        this.$store.commit('survey/addRemoveDiet', value)
-      }
+      ...mapMutations('survey', ['updateDiet'])
     },
     computed: {
-      name () {
-        return this.$store.getters['survey/getName']
-      },
-      dietsAdded () {
-        return this.$store.getters['survey/getDiets']
-      },
-      dietsFull () {
-        return this.dietsAdded.length > 0
-      }
+      ...mapState('survey', { dietSelected: 'diet' }),
+      ...mapState('survey', ['name'])
     }
   }
 </script>
@@ -78,10 +71,9 @@
           v-for='(diet, key) in diets',
           :key='key',
           :text='diet.name'
-          :selected="dietsAdded.includes(diet.value)"
-          :disabled="!dietsAdded.includes(diet.value) && dietsFull"
+          :selected="dietSelected === diet.value"
           :value="diet.value"
-          @clicked="onClick"
+          @clicked="updateDiet"
         )
 
         .grid-x.button-container
@@ -92,7 +84,7 @@
             thv-button(
               element='button',
               size='large'
-              :disabled='dietsAdded.length < 1'
+              :disabled='!dietSelected'
               @click='submit'
             ) Next
 

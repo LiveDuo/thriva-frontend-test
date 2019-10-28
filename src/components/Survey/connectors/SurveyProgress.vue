@@ -19,7 +19,7 @@
 
 <template lang='pug'>
   .progress-bar-container
-    progress-bar(v-if='$route.meta.currentStep >= 0' :currentStep='currentStep', :totalSteps='stages.length-1')
+    progress-bar(v-if='currentStep >= 0' :currentStep='currentStep', :totalSteps='stages.length-1')
 </template>
 
 <style lang='stylus'>

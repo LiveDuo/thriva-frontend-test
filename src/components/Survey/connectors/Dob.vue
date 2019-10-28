@@ -2,6 +2,8 @@
   import ThvButton from '@/components/Shared/Button'
   import DobInput from '@/components/Shared/DobInput'
 
+  import { mapState, mapMutations } from 'vuex'
+
   export default {
     name: 'Dob',
     components: {
@@ -10,23 +12,21 @@
     },
     computed: {
       disableNext () {
-        let under18 = this.$refs.DobInput && this.$refs.DobInput.ageError
-        return this.dob === '' || this.errors.items.length > 0 || under18 === true || under18 === null || !this.dob
+        const under18 = this.$refs.DobInput && this.$refs.DobInput.ageError
+        return !this.dob || this.errors.items.length > 0 || under18
       },
       feedback () {
-        if (this.$refs.DobInput && this.$refs.DobInput.ageError) {
+        const under18 = this.$refs.DobInput && this.$refs.DobInput.ageError
+        if (under18) {
           return 'You must be over 18'
         }
-        return this.errors.items.length > 0 ? this.errors.items[0].msg : ''
+        const errors = this.errors.items
+        return errors.length > 0 ? errors[0].msg : ''
       },
-      dob () {
-        return this.$store.getters['survey/getDob']
-      }
+      ...mapState('survey', ['dob'])
     },
     methods: {
-      updateDob (value) {
-        this.$store.commit('survey/updateDob', value)
-      },
+      ...mapMutations('survey', ['updateDob']),
       submit () {
         this.$refs.DobInput.handleSubmit()
         this.$validator.reset()
